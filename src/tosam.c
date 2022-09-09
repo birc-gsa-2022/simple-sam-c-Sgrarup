@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define LINEWIDTH 1024
 
@@ -39,7 +41,12 @@ int main(int argc, char const *argv[])
         char *read_name = gettok(&line, '\t');
         char *read_str = gettok(&line, '\t');
         char *pos = gettok(&line, '\n');
+
+        int readlen = strlen(read_str);
+        int realpos = atoi(pos)+1;
+
         // Now you have the input; just output it in Simple-SAM format.
+        printf("%s\t%s\t%d\t%dM\t%s\n", read_name, chrom, realpos, readlen, read_str);
     }
 
     fclose(input);
